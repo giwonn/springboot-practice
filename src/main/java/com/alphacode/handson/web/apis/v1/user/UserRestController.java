@@ -38,9 +38,8 @@ public class UserRestController {
     service.emailUpdate(id, dto.getEmail());
   }
 
-  @DeleteMapping("/{id}/email")
+  @DeleteMapping("/{id}")
   public void deleteEmail(@PathVariable("id") String id) {
-    this.details(id);
     service.delete(id);
   }
 
