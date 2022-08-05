@@ -1,0 +1,26 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: local
+#  flyway:
+#    locations: ['classpath:db/migration']
+  jpa:
+    database: h2
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        # ??? ??? ?? ????? ??
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 1000
+        DialectResolutionInfo:
+  datasource:
+    url: jdbc:h2:~/handson/users;MODE=MYSQL # h2??? ????? mode ???? ?
+    driver-class-name: org.h2.Driver
+    username: sa # default username
+    password: sa # default password
