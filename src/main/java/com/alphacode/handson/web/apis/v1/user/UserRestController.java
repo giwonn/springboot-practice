@@ -30,7 +30,7 @@ public class UserRestController {
   public User create(@RequestBody @Validated UserCreateDto dto, BindingResult bindingResult) throws BindException {
 
     if (bindingResult.hasErrors()) {
-      throw new BindException(bindingResult);
+      //throw new BindException(bindingResult);
     }
     return service.save(dto.to());
   }
