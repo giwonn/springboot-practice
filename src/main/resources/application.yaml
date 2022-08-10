@@ -4,23 +4,22 @@ server:
 spring:
   profiles:
     active: local
-#  flyway:
-#    locations: ['classpath:db/migration']
+  flyway:
+    locations: ["classpath:db/migration", "classpath:db/sample-data"]
+  datasource:
+    url: jdbc:h2:~/handson/user;AUTO_SERVER=TRUE;MODE=MYSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
   jpa:
-    database: h2
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
       naming:
-        # ??? ??? ?? ????? ??
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     properties:
-      hibernate:
-        format_sql: true
-        default_batch_fetch_size: 1000
-        DialectResolutionInfo:
-  datasource:
-    url: jdbc:h2:~/handson/users;MODE=MYSQL # h2??? ????? mode ???? ?
-    driver-class-name: org.h2.Driver
-    username: sa # default username
-    password: sa # default password
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 1000
+logging:
+  level:
+    web: debug

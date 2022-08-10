@@ -3,6 +3,9 @@ package com.alphacode.handson.web.apis.v1.user;
 import com.alphacode.handson.web.apis.v1.user.model.User;
 import com.alphacode.handson.web.apis.v1.user.model.dto.UserEmailUpdateDto;
 import com.alphacode.handson.web.apis.v1.user.service.UserService;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.alphacode.handson.web.apis.v1.user.model.dto.UserCreateDto;
 
@@ -24,7 +27,11 @@ public class UserRestController {
   }
 
   @PostMapping
-  public User create(@RequestBody UserCreateDto dto) {
+  public User create(@RequestBody @Validated UserCreateDto dto, BindingResult bindingResult) throws BindException {
+
+    if (bindingResult.hasErrors()) {
+      throw new BindException(bindingResult);
+    }
     return service.save(dto.to());
   }
 

@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.bytebuddy.utility.RandomString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -31,13 +29,14 @@ public class User {
 
   private String profileImageUrl;
 
-  private String state;
+  @Enumerated(EnumType.STRING)
+  private UserState state = UserState.PENDING;
 
   private Long latestLoggedInAt;
 
   private Long latestPasswordChangedAt;
 
-  private Long createAd = new Date().toInstant().getEpochSecond();
+  private Long createdAt = new Date().toInstant().getEpochSecond();
 
   private Long updatedAt;
 
