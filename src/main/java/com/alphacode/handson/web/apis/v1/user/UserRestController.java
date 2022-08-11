@@ -1,8 +1,10 @@
 package com.alphacode.handson.web.apis.v1.user;
 
 import com.alphacode.handson.web.apis.v1.user.model.User;
+import com.alphacode.handson.web.apis.v1.user.model.dto.UserDetailsResponseDto;
 import com.alphacode.handson.web.apis.v1.user.model.dto.UserEmailUpdateDto;
 import com.alphacode.handson.web.apis.v1.user.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -35,9 +37,11 @@ public class UserRestController {
     return service.save(dto.to());
   }
 
+  @ResponseBody
   @GetMapping("/{id}")
-  public User details(@PathVariable("id") String id) {
-    return service.details(id);
+  public ResponseEntity<UserDetailsResponseDto> details(@PathVariable("id") String id) {
+    User user = service.details(id);
+    return ResponseEntity.ok(UserDetailsResponseDto.of(user));
   }
 
   @PatchMapping("/{id}/email")
