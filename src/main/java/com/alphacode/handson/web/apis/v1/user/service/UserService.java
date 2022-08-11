@@ -1,5 +1,6 @@
 package com.alphacode.handson.web.apis.v1.user.service;
 
+import com.alphacode.handson.web.apis.v1.exceptions.ResourceNotFoundException;
 import com.alphacode.handson.web.apis.v1.user.model.User;
 import com.alphacode.handson.web.apis.v1.user.repository.UserRepository;
 import lombok.SneakyThrows;
@@ -27,7 +28,7 @@ public class UserService {
 
   @SneakyThrows
   public User details(String id) {
-    return repository.findById(id).orElseThrow(() -> new Exception("not found"));
+    return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
   }
   public void emailUpdate(String id, String email) {
     var user = this.details(id);

@@ -4,16 +4,16 @@ import com.alphacode.handson.web.apis.v1.user.model.User;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Getter
-public class UserCreateDto {
+public class UserCreateRequestDto {
 
-  @NotEmpty
+  @NotBlank
   private String username;
 
   @Email
-  @NotEmpty
+  @NotBlank
   private String email;
 
   private String firstName;

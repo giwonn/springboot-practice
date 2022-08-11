@@ -9,7 +9,7 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.alphacode.handson.web.apis.v1.user.model.dto.UserCreateDto;
+import com.alphacode.handson.web.apis.v1.user.model.dto.UserCreateRequestDto;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class UserRestController {
   }
 
   @PostMapping
-  public User create(@RequestBody @Validated UserCreateDto dto, BindingResult bindingResult) throws BindException {
+  public User create(@RequestBody @Validated UserCreateRequestDto dto, BindingResult bindingResult) throws BindException {
 
     if (bindingResult.hasErrors()) {
       throw new BindException(bindingResult);
