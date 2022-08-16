@@ -31,7 +31,7 @@ public class UserService {
     return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
   }
   public void emailUpdate(String id, String email) {
-    var user = this.details(id);
+    User user = this.details(id);
     user.setEmail(email);
     user.setUpdatedAt(new Date().toInstant().toEpochMilli());
     this.save(user);
